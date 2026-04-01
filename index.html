@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="buttonPrev">Previous fortune</button>
+    <button id="buttonNext">Next fortune</button>
+    <button id="buttonRandom">Random fortune</button>
+    <div id="output"></div>
+
+    <script>
+        // Store all of our fortunes as HTML strings in an array
+        let fortunes = [
+            "You will have a <span style='font-size: 40px; color: blue;'>GLORIOUS</span> day.",
+            "You will consume much <span style='letter-spacing: 1em; color: orange;'>cheese</span>.",
+            "You will get a <span style='font-size: 40px; color: red;'> Digimon x Pokémon </span> collaboration edition Switch 3.",
+            "You will get a signed photo of  <span style='font-size: 40px; color: yellow;'> Trump. </span>",
+            "You will have unlimited <span style='font-size: 40px; color: blue;'> water </span> to drink.",
+            "You will be able to <span style='font-size: 40px; color: gray;'> fall asleep </span> anytime.",
+            "You will get the chance to buy a <span style='font-size: 40px; color: orange;'>luxury mansion </span> at half price.",
+            "Your hair will turn into <span style='font-size: 40px; color: yellow;'> spaghetti. </span>",
+            "You will receive the ideal <span style='font-size: 40px; color: red;'> job offer </span> this week.",
+            "You will get<span style='font-size: 5px; color: red;'> thinner. </span>",
+            "You will get  <span style='font-size: 40px; color: blue;'> what you want. </span?>",
+            "You will not have to learn anything, and the school will still give you your  <span style='font-size: 40px; color: red;'>diploma. </span>",
+        ]
+
+        // Variable to track our current index (i.e. fortune) in the array
+        let index = 0;
+        let randomNumber = Math.random();
+
+        // Function to update the displayed fortune
+        function updateFortune() {
+            let output = document.querySelector('#output');
+            output.innerHTML = fortunes[index];
+            console.log(index); // to help with debugging!
+        }
+
+        // Run the function immediately to show the first fortune
+        updateFortune();
+
+        // Target all of our elements
+        let buttonPrev = document.querySelector("#buttonPrev");
+        let buttonNext = document.querySelector("#buttonNext");
+        let buttonRandom = document.querySelector("#buttonRandom");
+
+        // Add event listeners to all of our elements (like inline event handlers)
+        buttonPrev.addEventListener('click', prevFortune);
+        buttonNext.addEventListener('click', nextFortune);
+        buttonRandom.addEventListener('click', randomFortune);
+
+        // ————————————————————————————
+        // FUNCTIONS FOR YOU TO FINISH!
+
+        function nextFortune() {
+            index = index + 1; // same thing as writing index++;
+            if (index == fortunes.length) {
+                index = 0;
+            }
+
+            updateFortune();
+        }
+
+        function prevFortune() {
+             index = index - 1; // same thing as writing index++;
+            if (index == -1) {
+                index = fortunes.length - 1;
+            }
+
+            updateFortune();
+        }
+
+        function randomFortune() {
+           index = randomArrayIndex(fortunes)
+            updateFortune();
+        }
+
+        // Helper function to get a random item from an array
+        function randomArrayIndex(array) {
+            let randomIndex = Math.floor(Math.random() * array.length);
+            return randomIndex
+        }
+    </script>
+</body>
+
+</html>
